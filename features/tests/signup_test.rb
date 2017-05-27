@@ -17,8 +17,9 @@ class SignupTest
     @pages.page_home.signup_enter_email user.email
         # find(:xpath, '//div[@id = "signup"]/descendant::input[@name = "password1"]').send_keys 'test'
         # find(:xpath, '//div[@id = "signup"]/descendant::input[@name = "password2"]').send_keys 'test'
-    @pages.page_home.signup_enter_password user.password
-    @pages.page_home.signup_enter_password_again user.password_again
+    # @pages.page_home.signup_enter_password user.password
+    # @pages.page_home.signup_enter_password_again user.password_again
+    @pages.page_home.signup_enter_passwords user.password
         # find(:xpath, '//div[@id = "signup"]/descendant::input[@name = "project_name"]').send_keys 'Test Project Name'
     @pages.page_home.signup_enter_project_name user.project_name
         # find(:xpath, '//div[@id = "signup"]/descendant::img[@class = "closecross"]').click
@@ -43,14 +44,18 @@ class SignupTest
   def submit_signup_details_without_password
     user = Users.signup_user_without_password
     enter_signup_details(user)
-    @pages.page_home.signup_register_button
+    # @pages.page_home.signup_register_button
   end  
 
   def submit_signup_details_without_email
     user = Users.signup_user_without_email
     enter_signup_details(user)
-    @pages.page_home.signup_register_button
+    # @pages.page_home.signup_register_button
   end  
+
+  def signup_test_details
+    @pages.page_home.incorrent_signup_test
+  end
 
 
 

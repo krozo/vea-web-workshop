@@ -1,7 +1,7 @@
 class HomePage < BasePage
     attr_accessor :button_start
     attr_accessor :signin_password_idx_tmp, :signin_email_idx_tmp
-    attr_accessor :signup_password_idx_tmp, :signup_emailIdxTmp, :signup_emailTextTmp, :signup_passwordTextTmp
+    attr_accessor :signup_password_idx_tmp, :signup_email_idx_tmp
   def initialize
     @video_frame = Element.new(:xpath, '//div[@id = "video"]')
     @try_now_button = Element.new(:xpath, '//button[@id = "start_button"]')
@@ -25,8 +25,8 @@ class HomePage < BasePage
     # Exercises Nr.4-5
     @signup_button = Element.new(:xpath, '//div[@id = "signup"]/descendant::button[@class = "button-form button-block-form innerButton"]')
 
-    @signup_passwordIdxTmp = 0
-    @signup_emailIdxTmp = 0
+    @signup_password_idx_tmp = 0
+    @signup_email_idx_tmp = 0
   end
 
   # 1................
@@ -34,7 +34,7 @@ class HomePage < BasePage
     @signin_button.click
   end  
 
-  # Change test id number, its work in 2,3,4,5 exercises
+  # Change test id number, its work in 2,3,4,5 exercises # # # # 
   def change_idx(idx_param, word, parameter)
     if (word.to_s.empty? == true) then
         parameter = idx_param
@@ -42,6 +42,7 @@ class HomePage < BasePage
         parameter = 0
     end
   end
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
   def signin_enter_email(email)
     @signin_email.send_keys email
@@ -113,27 +114,17 @@ class HomePage < BasePage
     @try_now_button.visible?
   end
 
-  # 4 - 5........................
   def open_signup
     @try_now_button.click
   end
 
   def signup_enter_email(email)
     @signup_email.send_keys email
-    if (email.to_s.empty? == true) then
-        @signup_emailIdxTmp = 2
-    else
-        @signup_emailIdxTmp = 0
-    end
+    @signup_email_idx_tmp = change_idx(2, email, @signup_email_idx_tmp)
   end
 
   def signup_enter_password(password)
     @signup_password1.send_keys password
-    if (password.to_s.empty? == true) then
-        @signup_passwordIdxTmp = 1
-    else
-        @signup_passwordIdxTmp = 0
-    end
   end
 
   def signup_enter_password_again(password)
@@ -143,6 +134,7 @@ class HomePage < BasePage
   def signup_enter_passwords(password)
     signup_enter_password password
     signup_enter_password_again password
+    @signup_password_idx_tmp = change_idx(1, password, @signup_password_idx_tmp)
   end
 
   def signup_enter_project_name(name)
@@ -152,6 +144,19 @@ class HomePage < BasePage
   def signup_register_button
     @signup_button.click
   end
+
+  # 4 - 5........................
+  def incorrent_signup_test
+    if (signup_password_idx_tmp == 0) and (signup_email_idx_tmp == 0) then
+      p 'Im registered ||| Email and password is correctly typed'
+      # signup_register_button
+    elsif (signup_password_idx_tmp == 1) and (signup_email_idx_tmp == 0) then
+      p 'Im not registered in ||| Password is empty'
+    elsif (signup_email_idx_tmp == 2) and (signup_password_idx_tmp == 0) then
+      p 'Im not registered in ||| Email is empty'
+    end
+  end
+
 
   def load
     visit('/')

@@ -13,8 +13,6 @@ end
 # Exercise Nr.4
 When(/^I submit signup details without passwords$/) do
     @tests.signup_tests.submit_signup_details_without_password
-
-    sleep(10)
 end
 
 # Exercise Nr.5
@@ -24,7 +22,7 @@ end
 
 # Exercise Nr.4 and Nr.5
 Then(/^Im not signed up$/) do
-    
+    @tests.signup_tests.signup_test_details
 end
 
 
