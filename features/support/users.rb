@@ -1,6 +1,7 @@
 require 'date'
 module Users
 
+  # ================== 1 - 3 ================== 
   def Users.signin_user
     @signin_user ||= User.new(email: 'gornist@inbox.lv', password: 'inbox_admin')
     @signin_user
@@ -15,6 +16,7 @@ module Users
     @signin_user_without_email ||= User.new(email: '', password: 'inbox_admin')
     @signin_user_without_email
   end
+  #  ==================      ================== 
 
   def Users.signup_user
     @signup_user ||= User.new(email: 'test@test.com', password: 'passworddemo')
@@ -25,6 +27,18 @@ module Users
     @signup_user_no_again_password ||= User.new(email: 'test@test.com', password: 'passworddemo', password_again: '')
     @signup_user_no_again_password
   end
+  # ================== 4 - 5 ================== 
+  def Users.signup_user_without_password
+    @signup_user_without_password ||= User.new(email: 'test@test.com', password: '', password_again: '', project_name: 'Test Project Name')
+    @signup_user_without_password
+  end
+
+  def Users.signup_user_without_email
+    @signup_user_without_email ||= User.new(email: '', password: 'passworddemo', password_again: 'passworddemo', project_name: 'Test Project Name')
+    @signup_user_without_email
+  end
+
+  #  ==================      ================== 
 end
 
 class User
@@ -42,15 +56,5 @@ class User
     end
     @project_name = project_name
   end
-
-  # def initialize(email: 'default', password: nil)
-  #   @email = email
-  #   @password = password
-  #   if password_again.nil?
-  #     @password_again = password
-  #   else
-  #     @password = password
-  #   end
-  # end
 end
 

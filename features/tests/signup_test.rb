@@ -38,4 +38,27 @@ class SignupTest
     enter_signup_details(user)
     @pages.page_home.signup_close_button
   end  
+
+  # ======================= 4 - 5 =======================
+  def submit_signup_details_without_password
+    user = Users.signup_user_without_password
+    enter_signup_details(user)
+    @pages.page_home.signup_register_button
+  end  
+
+  def submit_signup_details_without_email
+    user = Users.signup_user_without_email
+    enter_signup_details(user)
+    @pages.page_home.signup_register_button
+  end  
+
+
+
+
+
+
+
+
+  # =======================       =======================
+
 end
