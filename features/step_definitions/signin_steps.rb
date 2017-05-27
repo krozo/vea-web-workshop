@@ -9,7 +9,14 @@ When(/^I submit login details$/) do
 end
 
 Then(/^I see project page$/) do
-    
+    @tests.signin_tests.load_project_page?
+    @tests.signin_tests.signout_button
 end
 
 # Exercise Nr.2
+
+
+
+
+
+

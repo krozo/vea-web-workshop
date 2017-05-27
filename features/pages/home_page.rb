@@ -13,11 +13,10 @@ class HomePage < BasePage
 
     # Exercise Nr.1
     @signin_button = Element.new(:xpath, '//button[@id = "login-b"]')
-
-    @signin_email = Element.new(:xpath, '//div[@id = "login"]/descendant::input[@type = "email"]')
+    @signin_email = Element.new(:xpath, '//div[@id = "login"]/descendant::input[@name = "login"]')
     @signin_password = Element.new(:xpath, '//div[@id = "login"]/descendant::input[@type = "password"]')
-    
     @signin_log_in_button = Element.new(:xpath, '//div[@id = "login"]/descendant::button[@class = "button button-block innerButton"]')
+    @signout_button = Element.new(:xpath, '//div[@id = "logoutButton"]')
   end
 
   # ................
@@ -37,6 +36,14 @@ class HomePage < BasePage
     @signin_log_in_button.click
   end
 
+  def project_page_visible?
+    @signout_button.visible?
+  end
+
+  def signout_button
+    @signout_button.click
+  end
+
 
 
 
@@ -45,34 +52,34 @@ class HomePage < BasePage
     @try_now_button.visible?
   end
 
-  def open_signup
-    @try_now_button.click
-  end
+  # def open_signup
+  #   @try_now_button.click
+  # end
 
-  def signup_enter_email(email)
-    @signup_email.send_keys email
-  end
+  # def signup_enter_email(email)
+  #   @signup_email.send_keys email
+  # end
 
-  def signup_enter_password(password)
-    @signup_password1.send_keys password
-  end
+  # def signup_enter_password(password)
+  #   @signup_password1.send_keys password
+  # end
 
-  def signup_enter_password_again(password)
-    @signup_password2.send_keys password
-  end
+  # def signup_enter_password_again(password)
+  #   @signup_password2.send_keys password
+  # end
 
-  def signup_enter_passwords(password)
-    signup_enter_password password
-    signup_enter_password_again password
-  end
+  # def signup_enter_passwords(password)
+  #   signup_enter_password password
+  #   signup_enter_password_again password
+  # end
 
-  def signup_enter_project_name(name)
-    @project_name.send_keys name
-  end
+  # def signup_enter_project_name(name)
+  #   @project_name.send_keys name
+  # end
 
-  def signup_close_button
-    @signup_close_button.click
-  end
+  # def signup_close_button
+  #   @signup_close_button.click
+  # end
 
   def load
     visit('/')

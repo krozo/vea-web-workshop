@@ -11,13 +11,8 @@ class SigninTest
     end    
 
     def enter_signin_details(user)
-
-        # find(:xpath, '//div[@id = "login"]/descendant::input[@type = "email"]').send_keys 'test@test.com'
-
         @pages.page_home.signin_enter_email user.email
         @pages.page_home.signin_enter_password user.password
-
-
     end   
 
     def submit_signin_details
@@ -28,6 +23,14 @@ class SigninTest
 
     def signin_enter_button
         @pages.page_home.signin_login_button
+    end
+
+    def load_project_page?
+        @pages.page_home.project_page_visible?
+    end
+
+    def signout_button
+        @pages.page_home.signout_button
     end
 
 
