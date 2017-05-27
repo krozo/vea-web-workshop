@@ -1,7 +1,7 @@
 class HomePage < BasePage
     attr_accessor :button_start
-    attr_accessor :signin_passwordIdxTmp, :signin_emailIdxTmp, :signin_emailTextTmp, :signin_passwordTextTmp
-    attr_accessor :signup_passwordIdxTmp, :signup_emailIdxTmp, :signup_emailTextTmp, :signup_passwordTextTmp
+    attr_accessor :signin_password_idx_tmp, :signin_email_idx_tmp
+    attr_accessor :signup_password_idx_tmp, :signup_emailIdxTmp, :signup_emailTextTmp, :signup_passwordTextTmp
   def initialize
     @video_frame = Element.new(:xpath, '//div[@id = "video"]')
     @try_now_button = Element.new(:xpath, '//button[@id = "start_button"]')
@@ -20,8 +20,8 @@ class HomePage < BasePage
     @signin_log_in_button = Element.new(:xpath, '//div[@id = "login"]/descendant::button[@class = "button button-block innerButton"]')
     @signout_button = Element.new(:xpath, '//div[@id = "logoutButton"]')
 
-    @signin_passwordIdxTmp = 0
-    @signin_emailIdxTmp = 0
+    @signin_password_idx_tmp = 0
+    @signin_email_idx_tmp = 0
     # Exercises Nr.4-5
     @signup_button = Element.new(:xpath, '//div[@id = "signup"]/descendant::button[@class = "button-form button-block-form innerButton"]')
 
@@ -34,14 +34,35 @@ class HomePage < BasePage
     @signin_button.click
   end  
 
+  # Change test id number, its work in 2,3,4,5 exercises
+  def change_idx(idx_param, word, parameter)
+    if (word.to_s.empty? == true) then
+        parameter = idx_param
+    else
+        parameter = 0
+    end
+  end
+
   def signin_enter_email(email)
     @signin_email.send_keys email
-    @signin_emailTextTmp = email
+    # @signin_emailTextTmp = email
+    # if (email.to_s.empty? == true) then
+    #     @signin_email_idx_tmp = 2
+    # else
+    #     @signin_email_idx_tmp = 0
+    # end
+    @signin_email_idx_tmp = change_idx(2, email, @signin_email_idx_tmp)
   end  
 
   def signin_enter_password(password)
     @signin_password.send_keys password
-    @signin_passwordTextTmp = password
+    # @signin_passwordTextTmp = password
+    # if (password.to_s.empty? == true) then
+    #     @signin_password_idx_tmp = 1
+    # else
+    #     @signin_password_idx_tmp = 0
+    # end
+    @signin_password_idx_tmp = change_idx(1, password, @signin_password_idx_tmp)
   end  
 
   def signin_login_button
@@ -57,31 +78,31 @@ class HomePage < BasePage
   end
 
   # 2...........................
-  def password_nil
-    if (signin_passwordTextTmp.to_s.empty? == true) then
-        @signin_passwordIdxTmp = 1
-    else
-        @signin_passwordIdxTmp = 0
-    end
-  end
+  # def password_nil
+  #   if (signin_passwordTextTmp.to_s.empty? == true) then
+  #       @signin_passwordIdxTmp = 1
+  #   else
+  #       @signin_passwordIdxTmp = 0
+  #   end
+  # end
   # 3.............................
-  def email_nil
-    if (signin_emailTextTmp.to_s.empty? == true) then
-        @signin_emailIdxTmp = 2
-    else
-        @signin_emailIdxTmp = 0
-    end
-  end
+  # def email_nil
+  #   if (signin_emailTextTmp.to_s.empty? == true) then
+  #       @signin_emailIdxTmp = 2
+  #   else
+  #       @signin_emailIdxTmp = 0
+  #   end
+  # end
   # 2 and 3
   def incorrent_login_test
-    password_nil
-    email_nil
-    if (signin_passwordIdxTmp == 0) and (signin_emailIdxTmp == 0) then
+    # password_nil
+    # email_nil
+    if (signin_password_idx_tmp == 0) and (signin_email_idx_tmp == 0) then
       p 'Im loged in ||| Email and password is correct'
       signin_login_button
-    elsif (signin_passwordIdxTmp == 1) and (signin_emailIdxTmp == 0) then
+    elsif (signin_password_idx_tmp == 1) and (signin_email_idx_tmp == 0) then
       p 'Im not loged in ||| Password is empty'
-    elsif (signin_emailIdxTmp == 2) and (signin_passwordIdxTmp == 0) then
+    elsif (signin_email_idx_tmp == 2) and (signin_password_idx_tmp == 0) then
       p 'Im not loged in ||| Email is empty'
     end
   end
@@ -99,10 +120,20 @@ class HomePage < BasePage
 
   def signup_enter_email(email)
     @signup_email.send_keys email
+    if (email.to_s.empty? == true) then
+        @signup_emailIdxTmp = 2
+    else
+        @signup_emailIdxTmp = 0
+    end
   end
 
   def signup_enter_password(password)
     @signup_password1.send_keys password
+    if (password.to_s.empty? == true) then
+        @signup_passwordIdxTmp = 1
+    else
+        @signup_passwordIdxTmp = 0
+    end
   end
 
   def signup_enter_password_again(password)
