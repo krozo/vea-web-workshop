@@ -11,17 +11,4 @@
 # end
 
 
-# Exercise Nr.1
-Given(/^I am on Appimation login page$/) do
-    
-end
 
-When(/^I submit login details$/) do
-    
-end
-
-Then(/^I see project page$/) do
-    
-end
-
-# Exercise Nr.2

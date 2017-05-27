@@ -10,7 +10,35 @@ class HomePage < BasePage
     @project_name = Element.new(:xpath, '//div[@id = "signup"]/descendant::input[@name = "project_name"]')
 
     @signup_close_button = Element.new(:xpath, '//div[@id = "signup"]/descendant::img[@class = "closecross"]')
+
+    # Exercise Nr.1
+    @signin_button = Element.new(:xpath, '//button[@id = "login-b"]')
+
+    @signin_email = Element.new(:xpath, '//div[@id = "login"]/descendant::input[@type = "email"]')
+    @signin_password = Element.new(:xpath, '//div[@id = "login"]/descendant::input[@type = "password"]')
+    
+    @signin_log_in_button = Element.new(:xpath, '//div[@id = "login"]/descendant::button[@class = "button button-block innerButton"]')
   end
+
+  # ................
+  def open_signin
+    @signin_button.click
+  end  
+
+  def signin_enter_email(email)
+    @signin_email.send_keys email
+  end  
+
+  def signin_enter_password(password)
+    @signin_password.send_keys password
+  end  
+
+  def signin_login_button
+    @signin_log_in_button.click
+  end
+
+
+
 
   def visible?
     @video_frame.visible?

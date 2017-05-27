@@ -1,5 +1,11 @@
 require 'date'
 module Users
+
+  def Users.signin_user
+    @signin_user ||= User.new(email: 'gornist@inbox.lv', password: 'inbox_admin')
+    @signin_user
+  end
+
   def Users.signup_user
     @signup_user ||= User.new(email: 'test@test.com', password: 'passworddemo')
     @signup_user

@@ -3,6 +3,7 @@ class SignupTest
       @pages = pages
   end
 
+
   def load_signup_page
         # visit 'http://www.apimation.com'
     @pages.page_home.load
